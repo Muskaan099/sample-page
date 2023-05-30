@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Layout</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #eee;
+    }
+
+    .header {
+      padding: 10px;
+    }
+
+    .header img {
+      height: 30px;
+      width: auto;
+      margin-right: 10px;
+    }
+
+    .link-boxes {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .link-boxes .box {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      margin: 0 10px;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .link-boxes .box:hover {
+      background-color: #555;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .cardx {
+      border: none;
+      border-radius: 10px;
+      width: 48%;
+      background-color: #2e264a;
+      color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .cardx:hover {
+      background-color: #132230;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(44, 44, 48, 0.241);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+      Bootstrap
+    </a>
+  </nav>
+
+  <div class="link-boxes">
+    <div class="box">Link Title 1</div>
+    <div class="box">Link Title 2</div>
+    <div class="box">Link Title 3</div>
+    <div class="box">Link Title 4</div>
+  </div>
+
+  <div class="container">
+    <div class="card-container">
+      <div class="cardx card text-white mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Primary card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="cardx card text-white mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Primary card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="cardx card text-white mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Primary card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="cardx card text-white mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Primary card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="cardx card text-white mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Primary card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="cardx card text-white mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Primary card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <!-- Add more cardx elements here -->
+    </div>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
