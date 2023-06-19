@@ -1,0 +1,119 @@
+<html>
+
+<head>
+    <title>Peripheral HUB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_1.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap_min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/model_new.css') }}">
+    <style>
+        /* CSS for the collapsible sidebar */
+        .wrapper {
+            display: flex;
+            height: 100%;
+        }
+
+        #sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+            z-index: 999;
+            overflow: auto;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            overflow-y: auto;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #content {
+            width: calc(100% - 250px);
+            margin-left: 250px;
+            transition: all 0.3s;
+            padding: 20px;
+        }
+
+        #sidebarCollapse {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -250px;
+            }
+
+            #content {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            #sidebarCollapse:checked~#sidebar {
+                margin-left: 0;
+            }
+
+            #sidebarCollapse:checked~#content {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            #sidebarCollapse:checked~.wrapper {
+                overflow: hidden;
+            }
+
+            #sidebarCollapse:checked~.wrapper #content {
+                position: relative;
+            }
+
+            #sidebarCollapse:checked~.wrapper #sidebar {
+                position: relative;
+            }
+
+            #sidebarCollapse:checked~.wrapper #sidebar #dismiss {
+                display: none;
+            }
+
+            #sidebarCollapse:checked~.wrapper #sidebarCollapse-label:after {
+                content: "\f0c9";
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <input type="checkbox" id="sidebarCollapse">
+        <div id="sidebar">
+            <!-- Sidebar content goes here -->
+        </div>
+        <div id="content">
+            <header>
+                <div>
+                    <a class="overlay" href="/">
+                        <div class="p2">USB</div>
+                    </a>
+                </div>
+            </header>
+
+            <main class="container col-sm-12">
+                <!-- Rest of the content goes here -->
+            </main>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/stackpath.bootstrapcdn.com_bootstrap_4.5.2_js_bootstrap.min.js') }}"></script>
+    <script>
+        // Handle sidebar toggle
+        var sidebarCollapse = document.getElementById('sidebarCollapse');
+        sidebarCollapse.addEventListener('change', function () {
+            if (this.checked) {
+                document.getElementById('sidebar').classList.add('active');
+            } else {
+                document.getElementById('sidebar').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</
