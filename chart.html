@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chart Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart" width="150px" height="400" style="align-self:center"></canvas>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chartData = {
+            labels: [],
+            datasets: [{
+                label: 'Line 1',
+                data: [],
+                borderColor: 'red',
+                fill: false
+            }, {
+                label: 'Line 2',
+                data: [],
+                borderColor: 'blue',
+                fill: false
+            }]
+        };
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+        function updateChart() {
+            fetch('/chart').then(response => response.json()).then(data => {
+                chartData.labels = data.labels;
+                chartData.datasets[0].data = data.data1;
+                chartData.datasets[1].data = data.data2;
+                myChart.update();
+            });
+        }
+        setInterval(updateChart, 5000);
+
+        
+
+    </script>
+</body>
+</html>
+
+
+@app.route('/chart')
+def chart_data():
+    labels = ["January", "February", "March", "April", "May", "June", "July"]
+    data1 = [random.randint(1, 10) for i in range(7)]
+    data2 = [random.randint(1, 10) for i in range(7)]
+    return jsonify({"labels": labels, "data1": data1, "data2": data2})
+
