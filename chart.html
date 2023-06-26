@@ -55,3 +55,105 @@ def chart_data():
     data2 = [random.randint(1, 10) for i in range(7)]
     return jsonify({"labels": labels, "data1": data1, "data2": data2})
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pie Charts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+        }
+        canvas {
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pie Charts</h1>
+        <div class="chart-container">
+            <div class="chart">
+                <canvas id="chart1"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="chart2"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-labels@1.1.0"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var data1 = {{ data1|tojson }};
+      var data2 = {{ data2|tojson }};
+
+      
+
+      var options = {
+		legend: {
+			position: 'right',
+			labels: {
+				fontColor: '#333',
+				fontSize: 12,
+				boxWidth: 15,
+				padding: 10
+			}
+		},
+		plugins: {
+			labels: {
+				render: 'percentage',
+				fontColor: '#fff',
+				fontSize: 14,
+				precision: 2
+			}
+		}
+	};
+
+	var ctx1 = document.getElementById('chart1').getContext('2d');
+	new Chart(ctx1, {
+		type: 'pie',
+		data: {
+			labels: data1.labels,
+			datasets: [{
+				data: data1.values,
+				backgroundColor: data1.colors
+			}]
+		},
+		options: options
+	});
+
+	var ctx2 = document.getElementById('chart2').getContext('2d');
+	new Chart(ctx2, {
+		type: 'pie',
+		data: {
+			labels: data2.labels,
+			datasets: [{
+				data: data2.values,
+				backgroundColor: data2.colors
+			}]
+		},
+		options: options
+	});
+    });
+  </script>
+</body>
+</html>
+app.route('/')
+def func():
+    data1 = {
+        'labels': ['Label 1', 'Label 2', 'Label 3'],
+        'values': [25, 50, 75],
+        'colors': ['#FF6384', '#36A2EB', '#FFCE56']
+    }
+    
+    data2 = {
+		'labels': ['A', 'B', 'C'],
+        'values': [10, 20, 30],
+        'colors': ['#FF6384', '#36A2EB', '#FFCE56']
+	}
+    return render_template('index.html',data1=data1,data2=data2)
+    
