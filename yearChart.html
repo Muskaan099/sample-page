@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Horizontal Stacked Bar Chart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        canvas {
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Horizontal Stacked Bar Chart</h1>
+        <form id="yearForm" onsubmit="getData(); return false;">
+			<label for="yearInput">Year:</label>
+			<input type="number" id="yearInput" name="yearInput" min="2000" max="3000" value={{cr}} required >
+			
+		</form>
+        <canvas id="chart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+    <script>
+        function getData() {
+            var yearInput = document.getElementById('yearInput').value;
+
+            // Call backend function to retrieve data arrays using AJAX or fetch API
+            // Replace the URL with the actual endpoint of your backend function
+            var url = '/get_data?year=' + yearInput;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Assuming the backend returns an object with 'labels', 'dataset1', 'dataset2', 'dataset3' properties
+                    var labels = data.labels;
+                    var dataset1 = data.dataset1;
+                    var dataset2 = data.dataset2;
+                    var dataset3 = data.dataset3;
+
+                    var chartData = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Dataset 1',
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            data: dataset1
+                        }, {
+                            label: 'Dataset 2',
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            data: dataset2
+                        }, {
+                            label: 'Dataset 3',
+                            backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                            data: dataset3
+                        }]
+                    };
+
+                    var options = {
+                        scales: {
+                            xAxes: [{
+                                stacked: true
+                            }],
+                            yAxes: [{
+                                stacked: true
+                            }]
+                        }
+                    };
+
+                    var ctx = document.getElementById('chart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'horizontalBar',
+                        data: chartData,
+                        options: options
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+		window.addEventListener('DOMContentLoaded', getData())
+    </script>
+</body>
+</html>
+
+
+@app.route('/get_data', methods=['GET','POST'])
+def get_data():
+    print(request.args.get('year'))
+    year = int(request.args.get('year'))
+    print(year)
+    # Fetch the three arrays corresponding to the selected year
+    # Replace this with your actual data retrieval logic
+    data1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    data2 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
+    data3 = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]
+    labels = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec']
+    # Return the data as a JSON response
+    return jsonify({'labels':labels,'dataset1': data1, 'dataset2': data2, 'dataset3': data3})
