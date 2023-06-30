@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Input Output Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+  
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+    }
+  
+    h1 {
+      margin: 0;
+    }
+  
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 60px);
+    }
+  
+    .form-container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 800px;
+      width: 100%;
+      margin: 20px; /* Added margin between the two divs */
+    }
+  
+    .input-container,
+    .output-container {
+      flex-basis: 45%; /* Adjusted from 50% to 45% */
+      padding: 40px; /* Increased padding for height adjustment */
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+  
+    h2 {
+      margin-top: 0;
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Center align vertically */
+      align-items: center; /* Center align horizontally */
+      height: 100%; /* Set height to 100% for vertical centering */
+    }
+  
+    
+    .input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Added margin bottom for spacing */
+}
+
+.input-field input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%; /* Adjusted width to cover 90% of the container */
+  box-sizing: border-box;
+  margin: 0 auto; /* Added margin to center the input horizontally */
+}
+
+button[type="submit"] {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 120px; /* Adjusted width of the submit button */
+}
+    #outputDiv {
+  height: 300px; /* Adjusted height for square shape */
+  width: 300px; /* Adjusted width for square shape */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  overflow-y: auto; /* Added overflow-y property to enable vertical scrollbar */
+}
+  
+    .loading {
+      text-align: center;
+    }
+  
+    .loading:before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #333;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 0.6s linear infinite;
+    }
+  
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  
+</head>
+<body>
+  <header>
+    <h1>Header</h1>
+  </header>
+  <main>
+    <div class="form-container">
+        <div class="input-container">
+            <h2>Input</h2>
+            <div class="input-field">
+              <input type="text" id="textInput" placeholder="Enter text">
+            </div>
+            <button type="submit">Submit</button>
+          </div>
+      <div class="output-container">
+        <h2>Output</h2>
+        <div id="outputDiv"></div>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
